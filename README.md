@@ -21,6 +21,29 @@
 
 ## 🚀 快速开始
 
+### 第零步：配置你的 Minecraft 服务器
+
+在开始之前，请先确保你的 Paper 服务器配置正确。
+
+编辑服务器目录下的 `server.properties` 文件，确保以下配置项设置正确：
+
+```properties
+# 取消在线验证，这样非正式客户端能连接
+online-mode=false
+
+# 和平模式，防止机器人被僵尸击杀频繁重连影响保活
+difficulty=peaceful
+
+# 关闭白名单模式，任何玩家都可加入服务器
+white-list=false
+```
+
+> ⚠️ **重要提示**：修改配置后需要重启服务器才能生效！
+
+配置完成后，就可以继续下面的步骤了 👇
+
+---
+
 ### 第一步：Fork 本仓库
 
 1. 打开 [本仓库页面](https://github.com/你的用户名/mcbot-onekey)
