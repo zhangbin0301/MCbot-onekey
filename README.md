@@ -25,7 +25,7 @@
 
 在开始之前，请先确保你的 Paper 服务器配置正确。
 
-📌 推荐版本：Paper 1.21.1（最稳定，兼容性最好）
+> 📌 **推荐版本**：Paper 1.21.1（最稳定，兼容性最好）
 
 编辑服务器目录下的 `server.properties` 文件，确保以下配置项设置正确：
 
@@ -134,7 +134,7 @@ APP_DIR="mcbot-onekey"
 
 > ⚠️ **注意**：此脚本需要 **root 权限**运行
 
-复制下面这一整行命令，在你的任意VPS中执行：
+复制下面这一整行命令，在服务器终端中执行：
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/mcbot-onekey/main/install.sh)
