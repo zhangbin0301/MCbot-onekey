@@ -54,7 +54,7 @@ if [ ! -f index.js ]; then
 fi
 
 # ---------- 安装依赖 ----------
-npm install @baipiaodajun/mcbot mineflayer minecraft-protocol node-fetch
+npm install
 
 # ---------- 启动 ----------
 pm2 delete mcbot >/dev/null 2>&1 || true
