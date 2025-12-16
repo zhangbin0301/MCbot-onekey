@@ -1,34 +1,41 @@
-const fs = require('fs');
-const crypto = require('crypto');
+/**
+ * Minecraft Bot Keep Alive
+ * Single-entry version (no servers.json)
+ */
 
-// 随机用户名
-function randomUsername() {
-  return 'Bot_' + crypto.randomBytes(3).toString('hex');
-}
-
-// 读取服务器列表
-const servers = JSON.parse(fs.readFileSync('./servers.json', 'utf8'));
-
-servers.forEach((srv, i) => {
-  process.env.HOST = srv.host;
-  process.env.PORT = String(srv.port || 25565);
-
-  // 用户名
-  process.env.USERNAME = srv.username || randomUsername();
-
-  // 版本：自动识别（不写 VERSION）
-  if (srv.version) {
-    process.env.VERSION = srv.version;
-  } else {
-    delete process.env.VERSION;
+const servers = [
+  {
+    host: 'emerald.magmanode.com',
+    port: 34356,
+    // username: 'AFK_Bot',   // 可选，不写则随机
+    // version: '1.21.1'     // 可选，不写则自动检测
   }
 
-  console.log(`启动 Bot #${i + 1}`, {
-    host: process.env.HOST,
-    port: process.env.PORT,
-    username: process.env.USERNAME,
-    version: process.env.VERSION || 'auto'
-  });
+  // 如果需要多个服务器，继续往下加
+  // ,
+  // {
+  //   host: 'example.mcserver.com',
+  //   port: 25565
+  // }
+]
 
-  require('@baipiaodajun/mcbot');
-});
+if (!Array.isArray(servers) || servers.length === 0) {
+  console.error('[ERROR] 未配置任何服务器')
+  process.exit(1)
+}
+
+console.log(`[*] 启动 ${servers.length} 个 Minecraft Bot`)
+
+for (const s of servers) {
+  if (!s.host || !s.port) {
+    console.warn('[WARN] 跳过无效配置:', s)
+    continue
+  }
+
+  process.env.HOST = s.host
+  process.env.PORT = s.port
+  if (s.username) process.env.USERNAME = s.username
+  if (s.version) process.env.VERSION = s.version
+
+  require('@baipiaodajun/mcbot')
+}
